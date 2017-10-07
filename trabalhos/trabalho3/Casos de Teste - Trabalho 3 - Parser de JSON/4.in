@@ -1,0 +1,1 @@
+{"name": "lucas", "age": 25, "university": "usp", "grades": { "math": 10, "physics": 10, "biology": 6, "english": 8}, "mean":[10, 7], "approved": true, "extra observations": null    }
