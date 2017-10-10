@@ -3,7 +3,8 @@
 #define FUNCOES_H
 
 #include <stdio.h>
-#include <stdlin.h>
+#include <stdlib.h>
+#include <string.h>
 
 /*
 	Structure to save the data
@@ -17,7 +18,10 @@ typedef struct{
 }process;
 
 typedef struct{
-	process *p
+	process p;
 }infos;
+
+	
+infos *recebe_dados(char *linha);
 
 #endif

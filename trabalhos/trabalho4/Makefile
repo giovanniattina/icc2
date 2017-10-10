@@ -1,7 +1,7 @@
 all:
 	gcc *.c -Wall
 run:
-	./a,out
+	./a.out
 
 zip: 
 	delete *.zip
