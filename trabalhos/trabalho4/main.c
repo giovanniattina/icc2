@@ -8,6 +8,8 @@
 */
 
 #include "functions.h"
+#include "estrutura_dados/linked_list.h"
+
 
 #define recebe_linha(linha) {\
 	fgets(linha, 1001, stdin);\
