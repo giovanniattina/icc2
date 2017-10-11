@@ -8,7 +8,6 @@
 */
 
 #include "functions.h"
-#include "estrutura_dados/linked_list.h"
 
 
 #define recebe_linha(linha) {\
@@ -25,13 +24,13 @@ int main(){
 		recebe_linha(line);
 		
 		printf("%s\n", line);
-		dados[qnt++] = recebe_dados(line);
 		//ve se e'um f utliza algoritomo fifo nos dados
 		if(line[0] == 'f'){
 
 		 // rrecebe os dados como especificado para fifo  
 		}else{//recebe utilizando 
 			
+			dados[qnt++] = recebe_dados(line);
 		}
 	}while(!feof(stdin));
 
