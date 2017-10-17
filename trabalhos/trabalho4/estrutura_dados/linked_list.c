@@ -16,14 +16,14 @@ void create_list(t_list *l){
 	l->L->next = l->L->prev;//next point to prev of t_list 
 }
 
-void add_item(t_list *l, int item){
+void add_item(t_list *l, infos *item){
 	/*
 		Function create a t_item for save the new item and add to the top of the list
 	*/
 	//create a t_item for save the new item 
 
 	t_item *t = malloc(sizeof(t_item));
-	t->data.d = item;
+	t->data->d = item;
 	
 	if(l->qnt == 0){//and is the fist item add make the sentinel last in it
 		l->L->last = t;
@@ -50,7 +50,7 @@ void delete_item(t_list *l, t_item *item){
 	item->next->prev = item->prev;//the item in the next of the item to be remove point to the item in the prev
 }
 
-t_item *search(t_list *l, int item){
+/*t_item *search(t_list *l, infos *item){
 	/*
 		Function recive a list and a value to be find in the list
 		In:
@@ -58,16 +58,16 @@ t_item *search(t_list *l, int item){
 			item -> value to be found in the list
 		Out:
 			t-> the item found or null if the item isn't in the list
-	*/
+	
 	t_item *t = l->L->next;//go to the first item in the list
-	while(t != l->L && t->data.d != item) t = t->next;//while won't came back to the first of the list and didn't find the item go to the next
+	while(t != l->L && t->data != item) t = t->next;//while won't came back to the first of the list and didn't find the item go to the next
 
 	if(t == l->L) return NULL;
 
 	return t;
 
 }
-
+*/
 void show_itens(t_list *l){
 	/*
 		Function recive a list and display all the item save
@@ -81,20 +81,20 @@ void show_itens(t_list *l){
 	}
 }
 
-void add_sort(t_list *l, int item){
-	/*
+/* void add_sort(t_list *l, int item){
+	
 		Function recive a value to be add and a the list to add the value and add the value in ascending order
-	*/
+	
 	t_item *t = malloc(sizeof(t_item));
 
-	t->data.d = item;
+	t->data->d = item;
 
 	t_item *aux = l->L->next;
 
 	if(l->qnt == 0){//if 0 both are the same item
 		l->L->first = t;
 		l->L->last = t;
-	}else if(l->L->first->data.d > item){//if the pointer that is in first is bigger that the item change
+	}else if(l->L->first->data->d > item){//if the pointer that is in first is bigger that the item change
 		l->L->first = t;
 	}else if(item > l->L->last->data.d){//if the pointer that is in first is smaller that the item change
 		l->L->last = t;
@@ -109,3 +109,4 @@ void add_sort(t_list *l, int item){
 	l->qnt--;
 
 }
+*/
