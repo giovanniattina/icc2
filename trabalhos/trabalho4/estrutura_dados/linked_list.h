@@ -3,7 +3,6 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "estrutura_dados/linked_list.h"
 
 
 //struct to represent the data, can be change for any type of data
