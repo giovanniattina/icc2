@@ -1,5 +1,5 @@
 all:
-	gcc *.c -Wall
+	gcc *.c estrutura_dados/*.c -Wall
 run:
 	./a.out
 
