@@ -23,7 +23,7 @@ void add_item(t_list *l, infos *item){
 	//create a t_item for save the new item 
 
 	t_item *t = malloc(sizeof(t_item));
-	t->data->d = item;
+	t->data.d = item;
 	
 	if(l->qnt == 0){//and is the fist item add make the sentinel last in it
 		l->L->last = t;
@@ -51,7 +51,7 @@ void delete_item(t_list *l, t_item *item){
 }
 
 /*t_item *search(t_list *l, infos *item){
-	/*
+	
 		Function recive a list and a value to be find in the list
 		In:
 			l-> list to search the item
@@ -68,18 +68,18 @@ void delete_item(t_list *l, t_item *item){
 
 }
 */
-void show_itens(t_list *l){
-	/*
+/*void show_itens(t_list *l){
+	
 		Function recive a list and display all the item save
 		In:
 			l-> list to be displayed
-	*/
+	
 	t_item *t = l->L->next;
 	while(t != l->L){//while didn't go to the start of the list
 		printf("%d\n", t->data.d);
 		t = t->next;
 	}
-}
+}*/
 
 /* void add_sort(t_list *l, int item){
 	

@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "../functions.h"
 
 
 //struct to represent the data, can be change for any type of data
@@ -34,8 +35,8 @@ void create_list(t_list *l);
 void add_item(t_list *l, infos *item);
 void delete_item(t_list *l, t_item *item);
 //t_item *search(t_list *l, int k);
-void show_itens(t_list *l);
-void add_sort(t_list *l, infos *item);
+//void show_itens(t_list *l);
+//void add_sort(t_list *l, infos *item);
 
 
 #endif

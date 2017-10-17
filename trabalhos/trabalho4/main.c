@@ -17,21 +17,24 @@
 
 int main(){
 	
-	char line[1001];
+	char linha[1001];
 	int qnt = 0;
-	infos *dados = malloc(sizeof(dados)*20);
+	infos *dados = malloc(sizeof(infos)*20);
+	infos *aux;
 	do{
-		recebe_linha(line);
+		fgets(linha, 1001, stdin);
+		if(linha[strlen(linha) -1] == '\n') linha[strlen(linha) -1] = '\0';
 		
-		printf("%s\n", line);
+		//printf("%s\n", linha);
 		//ve se e'um f utliza algoritomo fifo nos dados
-		if(line[0] == 'f'){
+		if(linha[0] == 'f'){
 
 		 // rrecebe os dados como especificado para fifo  
 		}else{//recebe utilizando 
-			
-			dados[qnt++] = recebe_dados(line);
+			aux = recebe_dados(linha);
+			dados[qnt++] = aux;
 		}
+		printf("oi\n");
 	}while(!feof(stdin));
 
 	return 0;
