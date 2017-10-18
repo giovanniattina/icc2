@@ -19,9 +19,11 @@ typedef struct{
 
 typedef struct{
 	process p;
+	int qnt;
 }infos;
 
 	
-infos *recebe_dados(char *linha);
-
+void recebe_dados(char *linha, infos *dados);
+void ordena_prioridade(infos *dados);
+int checa_processo_nome(int num, infos *dados);
 #endif

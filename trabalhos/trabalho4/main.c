@@ -18,24 +18,30 @@
 int main(){
 	
 	char linha[1001];
-	int qnt = 0;
+	int qnt, tipo_entrada;
+	qnt = 0;
 	infos *dados = malloc(sizeof(infos)*20);
-	infos *aux;
 	do{
 		fgets(linha, 1001, stdin);
 		if(linha[strlen(linha) -1] == '\n') linha[strlen(linha) -1] = '\0';
 		
 		//printf("%s\n", linha);
 		//ve se e'um f utliza algoritomo fifo nos dados
-		if(linha[0] == 'f'){
-
-		 // rrecebe os dados como especificado para fifo  
-		}else{//recebe utilizando 
-			aux = recebe_dados(linha);
-			dados[qnt++] = aux;
+		if(qnt ==0 && linha[0] == 'f'){
+			tipo_entrada = 0;
+		}else if(qnt == 0)tipo_entrada = 1;
+		
+		if(linha[0] != 'f'){
+			recebe_dados(linha,dados);
+			
 		}
-		printf("oi\n");
+
+
 	}while(!feof(stdin));
+
+	if(tipo_entrada == 1){
+		ordena_prioridade(dados);
+	}
 
 	return 0;
 }
