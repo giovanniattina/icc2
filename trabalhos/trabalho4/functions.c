@@ -1,11 +1,14 @@
+
 #include "functions.h"
+#include "estrutura_dados/fila.h"
+#include "estrutura_dados/linked_list.h"
 
 
 
 void recebe_dados(char *linha, infos *dados){
 	int r, pos, num, c, controle, check;
 	pos = 0; controle = 0; check = 0;
-
+	dados->qnt =0;
 	infos dado;
 	/*
 		Controle -> Variavel para saber qual ponto salvar 	
@@ -80,14 +83,40 @@ void ordena_prioridade(infos *dados){
 
 }
 
+result *executa_processos(infos *dados){
+	int quantum = 0;
+	int aux_int, aux_qnt_final;
+	t_list processos;
+	infos *aux;
+	result *final = malloc(sizeof(result)*dados->qnt);
+	aux_qnt_final = 0;
+	while(1){
+		quantum++;
+		if(processos.qnt > 0){
+			for(int i = 0; i<processos.qnt; i++){
+				aux = retira_qualquer_item(&processos, 1);
+				if(aux->tf0 == 0){
+					final[aux_qnt_final].process = aux.p0;
+					final[aux_qnt_final].time = quantum;
 
-queue *adiciona_item_fila(infos *dados){
+				}else aux->tf0--;
 
-	queue *q = malloc(sizeof(queue));
-
-	cria(q);
-
-	for(int i = 0; i< dados->qnt; i++){
-		add_item_q(q, dados[i]);
+			}
+		}
+		if((aux_int =novo_processo(quantum, infos *dados)) != -1){
+			add_item(&processos, &dados[aux]);
+		}
 	}
 }
+
+int novo_processo(int q, infos *dados){
+	for(int i = 0; i < dados->qnt; i++){
+		if(dados[i].p.t00 = q){
+			return i;
+		} 
+	}
+	return -1;
+}
+
+
+

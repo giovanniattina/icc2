@@ -1,9 +1,9 @@
 #ifndef LINKED_LIST_H
 #define LINKED_LIST_H
 
-#include <stdio.h>
-#include <stdlib.h>
-#include "../functions.h"
+//#include <stdio.h>
+//#include <stdlib.h>
+//#include "../functions.h"
 
 
 //struct to represent the data, can be change for any type of data
@@ -34,6 +34,8 @@ typedef struct {
 void create_list(t_list *l);
 void add_item(t_list *l, infos *item);
 void delete_item(t_list *l, t_item *item);
+t_list *adiciona_item_lista(infos *dados);
+infos *retira_qualquer_item(t_list *t, int pos);
 //t_item *search(t_list *l, int k);
 //void show_itens(t_list *l);
 //void add_sort(t_list *l, infos *item);

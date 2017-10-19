@@ -110,3 +110,31 @@ void delete_item(t_list *l, t_item *item){
 
 }
 */
+t_list *adiciona_item_lista(infos *dados){
+	t_list *t = malloc(sizeof(t_list));
+
+	create_list(t);
+
+	for(int i = dados->qnt -1; i >= 0; i--){
+		add_item(t, &dados[i]);
+	}
+
+	return t;
+}
+
+infos *retira_qualquer_item(t_list *t, int pos){
+
+	t_item *aux = t->L->next
+	int qnt; 
+	if(pos > t->qnt){
+		while(qnt < pos-1){
+			aux= t->next;
+		}
+
+		t->prev->next = t->next;
+		t->next->prev = t->prev;
+
+		return t->data;
+	}
+	return NULL;
+}

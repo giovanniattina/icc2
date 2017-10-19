@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+
 /*
 	Structure to save the data
 	p0 -> indentification code
@@ -22,6 +23,11 @@ typedef struct{
 	int qnt;
 }infos;
 
+
+typedef struct{
+	int process;
+	int time;
+}result;
 	
 void recebe_dados(char *linha, infos *dados);
 void ordena_prioridade(infos *dados);

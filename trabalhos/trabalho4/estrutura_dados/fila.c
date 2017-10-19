@@ -1,5 +1,5 @@
-#include "fila.h"
-
+//#include "fila.h"
+//#include "../functions.h"
 
 
 void cria(queue *q){
@@ -23,4 +23,16 @@ infos *remove_item_q(queue *q){
 		q->itens[i] = q->itens[i+1];
 	}
 	return aux;
+}
+
+queue *adiciona_item_fila(infos *dados){
+
+	queue *q = malloc(sizeof(queue));
+
+	cria(q);
+
+	for(int i = 0; i< dados->qnt; i++){
+		add_item_q(q, &dados[i]);
+	}
+	return q;
 }

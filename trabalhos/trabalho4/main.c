@@ -41,6 +41,8 @@ int main(){
 
 	if(tipo_entrada == 1){
 		ordena_prioridade(dados);
+		t_list dados_lista = adiciona_item_list*
+
 	}
 
 	return 0;
