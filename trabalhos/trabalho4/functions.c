@@ -43,18 +43,10 @@ void recebe_dados(char *linha, infos *dados){
 }
 
 int checa_processo_nome(int num, infos *dados){
-	/*	
-		Checa os numeros dos processados entrados e se já tiver um igual retorna 1
-		Entrada:
-			num-> numero para checar
-			dados -> dados para olhar todos
-		Saida:
-			0 -> se nao tiver
-			1 -> se tiver
-	*/
-	for(int i = 0; i < dados->qnt; i++){
+
+	for(int i = 0; i < dados->qnt; i++){//anda por todos os dados
 		if(dados->p[i]->p0 == num){
-			return 1;
+			return 1;//se achar
 		}
 	}
 	return 0;
@@ -84,13 +76,13 @@ void ordena_prioridade(infos *dados){
 }
 
 void print_process(infos *f){
-	for(int i = 0; i < f->qnt; i++){
+	for(int i = 0; i < f->qnt; i++){//anda por todos os 
 		printf("%d %d  %d \n", f->p[i]->p0, f->p[i]->t00, f->p[i]->tf0);
 	}
 }
 
 void print_final(result *f, int qnt){
-	for(int i = 0; i<qnt; i++){
+	for(int i = 0; i<qnt; i++){//anda por todos os processos acabos
 		printf("%d %d \n", f[i].process, f[i].time);
 	}
 }
