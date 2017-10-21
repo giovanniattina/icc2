@@ -19,7 +19,7 @@ typedef struct{
 }process;
 
 typedef struct{
-	process p;
+	process **p;
 	int qnt;
 }infos;
 
@@ -28,8 +28,14 @@ typedef struct{
 	int process;
 	int time;
 }result;
+
+
 	
 void recebe_dados(char *linha, infos *dados);
 void ordena_prioridade(infos *dados);
 int checa_processo_nome(int num, infos *dados);
+void print_final(result *f, int qnt);
+void print_process(infos *f);
+void adiciona_resultando(result *r, process *p, int time);
+
 #endif

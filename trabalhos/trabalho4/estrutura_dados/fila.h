@@ -10,7 +10,7 @@
 typedef struct t_item_f t_item_f;
 
 struct t_item_f{
-	infos *item;
+	process *item;
 };
 
 typedef struct{
@@ -19,10 +19,8 @@ typedef struct{
 }queue;
 
 void cria(queue *q);
-void  add_item_q(queue *q, infos *item);
-infos *remove_item_q(queue *q);
-queue *adiciona_item_fila(infos *dados);
-int novo_processo(int q, infos *dados);
-result *executa_processos(infos *dados);
-
+void  add_item_q(queue *q, process *item);
+process *remove_item_q(queue *q);
+result *recebe_processos(infos *processos);
+void adiciona_processo_fila(infos *processos, queue *q, int quantum);
 #endif

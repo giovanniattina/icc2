@@ -16,7 +16,7 @@ void create_list(t_list *l){
 	l->L->next = l->L->prev;//next point to prev of t_list 
 }
 
-void add_item(t_list *l, infos *item){
+void add_item(t_list *l, process *item){
 	/*
 		Function create a t_item for save the new item and add to the top of the list
 	*/
@@ -81,26 +81,26 @@ void delete_item(t_list *l, t_item *item){
 	}
 }*/
 
-/* void add_sort(t_list *l, int item){
+ void add_sort(t_list *l, process *item){
 	
-		Function recive a value to be add and a the list to add the value and add the value in ascending order
+	//	Function recive a value to be add and a the list to add the value and add the value in ascending order
 	
 	t_item *t = malloc(sizeof(t_item));
 
-	t->data->d = item;
+	t->data.d = item;
 
 	t_item *aux = l->L->next;
 
 	if(l->qnt == 0){//if 0 both are the same item
 		l->L->first = t;
 		l->L->last = t;
-	}else if(l->L->first->data->d > item){//if the pointer that is in first is bigger that the item change
+	}else if(l->L->first->data.d->p0 > item->p0){//if the pointer that is in first is bigger that the item change
 		l->L->first = t;
-	}else if(item > l->L->last->data.d){//if the pointer that is in first is smaller that the item change
+	}else if(item->p0 > l->L->last->data.d->p0){//if the pointer that is in first is smaller that the item change
 		l->L->last = t;
 	}
 
-	while(aux != l->L && aux->data.d >= item) aux = aux->next;//find the first item that has a value higher value to the item to be  add
+	while(aux != l->L && aux->data.d->p0 >= item->p0) aux = aux->next;//find the first item that has a value higher value to the item to be  add
 
 	aux->prev->next = t;//the prev item to the item found points to the new item
 	t->prev = aux->prev; //the prev pointer of the new item points to the prev item
@@ -109,32 +109,21 @@ void delete_item(t_list *l, t_item *item){
 	l->qnt--;
 
 }
-*/
-t_list *adiciona_item_lista(infos *dados){
-	t_list *t = malloc(sizeof(t_list));
 
-	create_list(t);
 
-	for(int i = dados->qnt -1; i >= 0; i--){
-		add_item(t, &dados[i]);
-	}
+process *retira_qualquer_item(t_list *t, int pos){
 
-	return t;
-}
-
-infos *retira_qualquer_item(t_list *t, int pos){
-
-	t_item *aux = t->L->next
-	int qnt; 
+	t_item *aux = t->L->next;
+	int qnt = 0; 
 	if(pos > t->qnt){
 		while(qnt < pos-1){
-			aux= t->next;
+			aux= aux->next;
 		}
 
-		t->prev->next = t->next;
-		t->next->prev = t->prev;
+		aux->prev->next = aux->next;
+		aux->next->prev = aux->prev;
 
-		return t->data;
+		return aux->data.d;
 	}
 	return NULL;
 }
