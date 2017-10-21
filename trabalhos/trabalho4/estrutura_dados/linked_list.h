@@ -8,7 +8,7 @@
 
 //struct to represent the data, can be change for any type of data
 typedef struct {
-	infos *d;
+	process *d;
 }t_data;
 
 //to represent and iten the list, with data save in it and pointers to points to the next and prev
@@ -30,13 +30,19 @@ typedef struct {
 	t_item *L;
 }t_list;
 
+typedef struct{
+	int item1, item2, item3, item4;
+	t_list p1, p2, p3, p4;
+}prioridades;
+
 //declarations of functions 
 void create_list(t_list *l);
-void add_item(t_list *l, infos *item);
+void add_item(t_list *l, process *item);
 void delete_item(t_list *l, t_item *item);
+process *retira_qualquer_item(t_list *t, int pos);
 //t_item *search(t_list *l, int k);
 //void show_itens(t_list *l);
-//void add_sort(t_list *l, infos *item);
+void add_sort(t_list *l, process *item);
 
 
 #endif

@@ -1,0 +1,72 @@
+[33mcommit 60d01c7049feb219449c675f7fc6eccd1f8d0e04[m[33m ([m[1;36mHEAD -> [m[1;32mpassando_dados_para_estruturas[m[33m, [m[1;31morigin/master[m[33m, [m[1;32mmaster[m[33m)[m
+Author: Giovanni Attina <giovanniattina@gmail.com>
+Date:   Wed Oct 18 18:14:15 2017 -0200
+
+    tudo certo
+
+[33mcommit 08eda0f78422eaa77a82b9e724304ca35d160382[m
+Merge: a20ca13 fb3103b
+Author: Giovanni Attina <giovanniattina@gmail.com>
+Date:   Tue Oct 17 20:35:53 2017 -0200
+
+    Merge branch 'criando_estruturas'
+
+[33mcommit fb3103b1d80493cd5f0af456576f06f83cb57506[m[33m ([m[1;31morigin/criando_estruturas[m[33m)[m
+Author: Unknown <giovanniattina@gmail.com>
+Date:   Tue Oct 17 20:30:55 2017 -0200
+
+    end
+
+[33mcommit d77fa068fb89671abf35b9dba2362800af4a7ef2[m
+Author: Unknown <giovanniattina@gmail.com>
+Date:   Mon Oct 16 23:40:12 2017 -0200
+
+    mundando linked_lista para aceitar infos como entrada
+
+[33mcommit 482dccb3426a85495ce6e95bf7987ce658f5532d[m
+Author: Giovanni Attina <giovanniattina@gmail.com>
+Date:   Mon Oct 16 23:27:43 2017 -0200
+
+    adiciona fila
+
+[33mcommit a20ca1312411eebbbb76e10726298fc61e3faa61[m
+Author: Giovanni Attina <giovanniattina@gmail.com>
+Date:   Wed Oct 11 17:34:59 2017 -0300
+
+    adicionando readme
+
+[33mcommit 0894e1f01700ab9c1cb4c153ecae364334480694[m
+Author: Giovanni Attina <giovanniattina@gmail.com>
+Date:   Wed Oct 11 17:30:51 2017 -0300
+
+    arquivos de pilha
+
+[33mcommit ea08c4260d770bea2aee753867d391b2bfa332e6[m
+Author: Giovanni Attina <giovanniattina@gmail.com>
+Date:   Wed Oct 11 17:27:41 2017 -0300
+
+    Adicionando readme
+
+[33mcommit cc0815ee86265399c1d0608c13a59e760f1c0a16[m
+Author: Unknown <giovanniattina@gmail.com>
+Date:   Wed Oct 11 10:55:01 2017 -0300
+
+    adiciona a pasta a arquivos da lista circular
+
+[33mcommit 81873b72d6e31ddf4ce0fc459706e7d0fc9dee17[m
+Author: Giovanni Attina <giovanniattina@gmail.com>
+Date:   Tue Oct 10 17:00:20 2017 -0300
+
+    adicionar funcoes para receber dados
+
+[33mcommit 5f73c341e2d5515968683cf767b5d56b5841f76a[m
+Author: Unknown <giovanniattina@gmail.com>
+Date:   Mon Oct 9 14:31:48 2017 -0300
+
+    adicionado casos testes
+
+[33mcommit 9249831af44df040dc54f7abdd7d72eb88c6508f[m
+Author: giovanniattina <giovanniattina@gmail.com>
+Date:   Sat Oct 7 20:35:11 2017 -0300
+
+    t3 icc completo
