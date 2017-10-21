@@ -9,6 +9,7 @@
 
 #include "functions.h"
 #include "estrutura_dados/fila.h"
+#include "estrutura_dados/linked_list.h"
 
 
 #define recebe_linha(linha) {\
@@ -42,6 +43,7 @@ int main(){
 	}while(!feof(stdin));
 
 	if(tipo_entrada == 1){
+		f = recebe_processos_f(dados);
 	}else{
 		f = recebe_processos(dados);
 	}

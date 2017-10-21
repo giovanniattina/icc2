@@ -43,6 +43,8 @@ process *retira_qualquer_item(t_list *t, int pos);
 //t_item *search(t_list *l, int k);
 //void show_itens(t_list *l);
 void add_sort(t_list *l, process *item);
+result *recebe_processos_f(infos *dados);
+void adiciona_processos_lista(t_list *processos, infos *dados, int time);
 
 
 #endif
