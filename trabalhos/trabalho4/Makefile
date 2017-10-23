@@ -4,5 +4,5 @@ run:
 	./a.out
 
 zip: 
-	delete *.zip
-	zip *.c *.h Makefile info.txt
+	rm *.zip
+	zip *.c *.h Makefile info.txt /estrutura_dados

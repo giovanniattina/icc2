@@ -6,45 +6,63 @@
 #include "../functions.h"
 
 
-//struct to represent the data, can be change for any type of data
-typedef struct {
-	process *d;
-}t_data;
+#define MAX 1000 // quantidade maxima de itens em uma fila
 
-//to represent and iten the list, with data save in it and pointers to points to the next and prev
+//representa um item da lista
 typedef struct t_item t_item;
 
+//definicao do item da lista
 struct t_item{
-
-	t_data data;
-	t_item *next;
-	t_item *prev;
-    //sentinel for the first and last item
-    t_item *first;
-    t_item *last;
-
+	process *d;
 };
-//the head of the list
+
+//estrutura para salvar a quantidade e todos itens de uma lista
 typedef struct {
 	int qnt;
-	t_item *L;
+	t_item L[MAX];
 }t_list;
 
-typedef struct{
-	int item1, item2, item3, item4;
-	t_list p1, p2, p3, p4;
-}prioridades;
-
-//declarations of functions 
+/*
+ *	Funcao recebe uma lista e seta a quantidade de itens para 0
+ *	@parametros lista a ser setada
+ */
 void create_list(t_list *l);
-void add_item(t_list *l, process *item);
-void delete_item(t_list *l, t_item *item);
-process *retira_qualquer_item(t_list *t, int pos);
-//t_item *search(t_list *l, int k);
-//void show_itens(t_list *l);
-void add_sort(t_list *l, process *item);
-result *recebe_processos_f(infos *dados);
-void adiciona_processos_lista(t_list *processos, infos *dados, int time);
 
+/*
+ *	Funcao retira um item q qualquer possicao da fila
+ *	@parametros lista a ser tirada o item e posicao para tirar o item
+ */
+process *retira_qualquer_item(t_list *t, int pos);
+
+/*
+ *	Funca recebe um item e coloca ordenado na lista por ordem de prioridade do processo
+ *	@parametros lista que coloca o item e item que sera colocado
+ */
+void add_sort(t_list *l, process *item);
+
+/*
+ *	Funcao recebe os dados de entrada e simula o escalonamento dos processos
+ *	@parametros dados da entrada que serao usados no escalonamento do processo
+ */
+result *recebe_processos_f(infos *dados);
+
+/*
+ *	Adiciona um item na lista em qualquer possição
+ *	@parametros Lista que adicionara o item, posicao que o item sera adicionado e item que sera adicionado
+*/
+void adiciona_qualquer_lugar(t_list *t, int pos, process *item);
+
+/*
+ * 	Funcao adiciona os novos processos de um determinado tempo na lista
+ *	@parametros lista que os novos processos sera adicionado, dados da onde retirara o processo e tempo para entrar os novos processos
+ */
+void adiciona_processos_lista(t_list *processos, infos *dados, int time);
+/*
+ * Ordenada dos os itens da lista por prioridade do processo
+ * @parametros lista com os processos para ordenar
+*/
+void ordena(t_list *processos);
+
+void adiciona(t_list *t, process *p);
 
 #endif

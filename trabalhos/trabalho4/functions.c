@@ -38,7 +38,7 @@ void recebe_dados(char *linha, infos *dados){
 
 	}
 	dados->p[dados->qnt++] = dado;
-	printf("qnt : %d %d %d  %d \n",dados->qnt-1 ,dados->p[dados->qnt-1]->p0, dados->p[dados->qnt-1]->t00, dados->p[dados->qnt-1]->tf0);
+	//printf("qnt : %d %d %d  %d \n",dados->qnt-1 ,dados->p[dados->qnt-1]->p0, dados->p[dados->qnt-1]->t00, dados->p[dados->qnt-1]->tf0);
 
 }
 
