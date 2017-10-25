@@ -96,7 +96,7 @@ process *retira_qualquer_item(t_list *t, int pos){
 
 result *recebe_processos_f(infos *dados){
 
-	int quantum, qnt_f;
+	int quantum, qnt_f, item_anal, salva_prioridade, auxI, controle;
 	t_list processos;
 	result *final = malloc(sizeof(result)*dados->qnt);
 	process *aux;
@@ -105,25 +105,45 @@ result *recebe_processos_f(infos *dados){
 	*	qnt_f -> controlar quantidade de itens na fila
 	*	final -> para salvar os processos que acabaram
 	*	aux -> utilizar para salvar um processos temporariamente
+	*	auxI -> variavel para saber quando estou em uma prioridade e entrou uma maior e tenho que acabar os processos de prioridade menor antes
+	* 	controle -> para saber se tem q voltar para a prioridade mais alta, ativada quando auxI e ativada
 	*/
 	create_list(&processos);
-	qnt_f = 0; quantum = 0;
+	controle = 0;
+	qnt_f = 0; quantum = 0; item_anal = 0; salva_prioridade = 0;
 	do{//executa em quanto tiver item na lista
 		quantum++;
-		//printf("estou no quantum %d\n", quantum);
-		adiciona_processos_lista(&processos, dados, quantum);
+		//printf("estou no quantum:%d e estou no item%d\n", quantum, item_anal);
+		auxI =  adiciona_processos_lista(&processos, dados, salva_prioridade ,quantum, &item_anal);
 		//print_list(&processos);
-		aux = retira_qualquer_item(&processos, 0);
+
+		
+		if(controle == 1){
+			item_anal = 0;
+			controle = 0;
+		}
+
+		if (auxI == 1){
+			item_anal++;
+			controle = 1;
+		} 
+		
+		aux = processos.L[item_anal].d;
 		aux->tf0--;
+		//printf("\n estou executando %d \n", aux->p0);
 		if(aux->tf0 > 0){//se o processo tiver q executa ainda adiciona no final da lista
 			//se o processo tiver prioridde 0, volta ele para o comeco da lista
 			if(aux->r0 == 0){
-				adiciona_qualquer_lugar(&processos, 0, aux);
-			}else adiciona(&processos, aux);
+				//não mudo meu item_analizado
+			}else{
+				item_anal++;	
+			} 
 		}else if(aux->tf0 == 0){// se nao adiciona na lista de processos acabados
+			aux = retira_qualquer_item(&processos, item_anal);
+			salva_prioridade = aux->r0;
 			adiciona_resultando(&final[qnt_f++], aux, quantum);
 		}
-
+		if(item_anal == processos.qnt) item_anal = 0;
 
 	}while(processos.qnt > 0);
 
@@ -132,19 +152,34 @@ result *recebe_processos_f(infos *dados){
 
 }
 
-void adiciona_processos_lista(t_list *processos, infos *dados, int time){
-
+int adiciona_processos_lista(t_list *processos, infos *dados, int ultimo, int time, int *atual){
+	int retorna = 0;
 	for(int i = 0; i < dados->qnt; i++){//olh sobre todos os processos
 		if(dados->p[i]->t00 == time){
 			//se achar um processo de prioridade 0 coloca no começo da lista
 			if(dados->p[i]->r0 == 0){
 				adiciona_qualquer_lugar(processos, 0, dados->p[i]);
-			}else{				
+			}else{
+				if(processos->qnt > 2){//se eu entrar um item de alta prioridade mas~ainda tiver item na prioridade que estou
+					if(dados->p[i]->r0 > processos->L[*atual].d->r0){//se novo processo e de prioridade do proximo executar
+						if((processos->L[*atual].d->r0 != processos->L[*atual +1].d->r0)){//se o proximo processo não for na mesma prioridade volto para a mior prioridade
+							
+							if(processos->L[*atual].d->r0 == ultimo) retorna = 1;
+							else *atual = 0;
+						}
+					}			
+					
+				}
 				adiciona(processos, dados->p[i]);//adiciona um processo 
+
 				ordena(processos);//ordena a lista toda
 			}
 		}
 	}
+	if(retorna == 1){
+		return 1;
+	} 
+	return 0;
 	
 }
 

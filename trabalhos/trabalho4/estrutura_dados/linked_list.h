@@ -56,7 +56,7 @@ void adiciona_qualquer_lugar(t_list *t, int pos, process *item);
  * 	Funcao adiciona os novos processos de um determinado tempo na lista
  *	@parametros lista que os novos processos sera adicionado, dados da onde retirara o processo e tempo para entrar os novos processos
  */
-void adiciona_processos_lista(t_list *processos, infos *dados, int time);
+int adiciona_processos_lista(t_list *processos, infos *dados, int ultimo, int time, int *atual);
 /*
  * Ordenada dos os itens da lista por prioridade do processo
  * @parametros lista com os processos para ordenar
