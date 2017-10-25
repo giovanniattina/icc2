@@ -1,3 +1,4 @@
 Nome: Giovanni Attina do Nascimento
 Nuero USP: 9286614
 
+A implementacao este trabalho segue as definicoes descritas no arquivo PDF presente no runcodes

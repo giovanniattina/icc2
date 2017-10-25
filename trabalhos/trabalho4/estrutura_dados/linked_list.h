@@ -38,31 +38,31 @@ process *retira_qualquer_item(t_list *t, int pos);
  *	Funca recebe um item e coloca ordenado na lista por ordem de prioridade do processo
  *	@parametros lista que coloca o item e item que sera colocado
  */
-void add_sort(t_list *l, process *item);
-
-/*
- *	Funcao recebe os dados de entrada e simula o escalonamento dos processos
- *	@parametros dados da entrada que serao usados no escalonamento do processo
- */
 result *recebe_processos_f(infos *dados);
 
 /*
  *	Adiciona um item na lista em qualquer possição
  *	@parametros Lista que adicionara o item, posicao que o item sera adicionado e item que sera adicionado
-*/
+ */
 void adiciona_qualquer_lugar(t_list *t, int pos, process *item);
 
 /*
  * 	Funcao adiciona os novos processos de um determinado tempo na lista
  *	@parametros lista que os novos processos sera adicionado, dados da onde retirara o processo e tempo para entrar os novos processos
+ *	@retorno 1 se tiver ainda que executar todos os processos de uma prioridade e 0 se nao
  */
 int adiciona_processos_lista(t_list *processos, infos *dados, int ultimo, int time, int *atual);
+
 /*
  * Ordenada dos os itens da lista por prioridade do processo
  * @parametros lista com os processos para ordenar
-*/
+ */
 void ordena(t_list *processos);
 
+/*
+ *	Adiciona um item no final da lista 
+ *	@parametros lista para adicionar item, item para adicionar 
+ */
 void adiciona(t_list *t, process *p);
 
 #endif
