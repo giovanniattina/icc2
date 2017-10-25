@@ -9,39 +9,42 @@
 
 #include "functions.h"
 #include "estrutura_dados/fila.h"
+#include "estrutura_dados/linked_list.h"
 
 
-#define recebe_linha(linha) {\
-	fgets(linha, 1001, stdin);\
-	if(linha[strlen(linha) -1] == '\n') linha[strlen(linha) -1] = '\0';\
-	}
+
 
 int main(){
 	
 	char linha[1001];
 	int qnt, tipo_entrada;
-	qnt = 0;
 	infos *dados = malloc(sizeof(infos));
+	result *f;
+	/*
+ 	 *	qnt -> controla a quantidade de dados que entra
+	 *	tipo_entrada -> se vai usar fila ou lista
+	 *	dados -> todos os dados de entrada
+	 *	f-> resultado do escalonamento
+	 */
+
+	qnt = 0;
 	dados->p = malloc(sizeof(process)*20);
 	dados->qnt = 0;
-	result *f;
 	do{
-		fgets(linha, 1001, stdin);
-		if(linha[strlen(linha) -1] == '\n') linha[strlen(linha) -1] = '\0';
+		recebe_linha(linha);
 		
-		//printf("%s\n", linha);
-		//ve se e'um f utliza algoritomo fifo nos dados
-		if(qnt == 0 && linha[0] == 'f'){
+		if(qnt == 0 && linha[0] == 'f'){//se for usa fila
 			tipo_entrada = 0;
 		}else if(qnt == 0)tipo_entrada = 1;
 		
-		if(linha[0] != 'f'){
+		if(linha[0] != 'f'){//recebe os dados normal
 			recebe_dados(linha,dados);
 		}
 		qnt++;
 	}while(!feof(stdin));
 
 	if(tipo_entrada == 1){
+		f = recebe_processos_f(dados);
 	}else{
 		f = recebe_processos(dados);
 	}

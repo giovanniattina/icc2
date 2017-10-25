@@ -36,6 +36,14 @@ typedef struct{
 	int time;
 }result;
 
+/*
+ *	Recebe um ponteiro de char e pega o que esta no stdin e salva nele, tirando o \n do final
+ *	@parametros ponteiro do char para salvar a string
+ */
+#define recebe_linha(linha) {\
+	fgets(linha, 1001, stdin);\
+	if(linha[strlen(linha) -1] == '\n') linha[strlen(linha) -1] = '\0';\
+	}
 
 /* 
  *	Funcao para ler a string recebi e salvar nos dados
@@ -43,17 +51,12 @@ typedef struct{
  */	
 void recebe_dados(char *linha, infos *dados);
 
-
-void ordena_prioridade(infos *dados);
-
 /*
  *	Checa se ja ha um processo com o mesmo nome, se sim retorna ao usuario
  *	@parametros id do processo novo, dados para checar todos os processos 
  *	@return 1 se tiver processo com o mesmo nome e 0 se nao tiver 
  */
 int checa_processo_nome(int num, infos *dados);
-
-void print_process(infos *f);
 
 /*
  *	Adiciona um processo acabado nos resultados

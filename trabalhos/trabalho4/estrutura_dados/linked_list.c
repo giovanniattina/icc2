@@ -2,128 +2,154 @@
 
 
 void create_list(t_list *l){
-	/*
-		Funcion recibe a null list an create a t_item to be linked to the t_list
-		In:
-			l -> the new list
-	*/
-	//create a t_item to be linked to the t_list
-	t_item *L = malloc(sizeof(t_item));
 
 	l->qnt = 0;
-	l->L = L;
-	l->L->prev = l->L;//prev point to the t_list created
-	l->L->next = l->L->prev;//next point to prev of t_list 
+
 }
 
-void add_item(t_list *l, process *item){
-	/*
-		Function create a t_item for save the new item and add to the top of the list
-	*/
-	//create a t_item for save the new item 
+void print_list(t_list *t){
 
-	t_item *t = malloc(sizeof(t_item));
-	t->data.d = item;
-	
-	if(l->qnt == 0){//and is the fist item add make the sentinel last in it
-		l->L->last = t;
+	printf("lista\n");
+	for (int i = 0; i < t->qnt; ++i){
+		printf("%d ", t->L[i].d->p0);
 	}
-
-	t->next = l->L->next;//the t_item next point to the last item added in the list
-	l->L->next->prev = t;//the last item add in the list point to the new item(using the prev node)
-	l->L->next = t;//the t_list point to the new item 
-	t->prev =  l->L;//the new item point to the t_list
-	l->qnt++;
-
-	l->L->first = t;//all the elements add is add at fisr item
-}
-void delete_item(t_list *l, t_item *item){
-	/*
-		Function recive a list and the pointer of the item to be remove
-		In:
-			l -> list to remove the item 
-			item -> item to be remove
-	*/
-
-	l->qnt--;
-	item->prev->next = item->next;// the item in the prev of the item to be remove point to the item that the item to be remove point in the next
-	item->next->prev = item->prev;//the item in the next of the item to be remove point to the item in the prev
+	printf("\n");
 }
 
-/*t_item *search(t_list *l, infos *item){
-	
-		Function recive a list and a value to be find in the list
-		In:
-			l-> list to search the item
-			item -> value to be found in the list
-		Out:
-			t-> the item found or null if the item isn't in the list
-	
-	t_item *t = l->L->next;//go to the first item in the list
-	while(t != l->L && t->data != item) t = t->next;//while won't came back to the first of the list and didn't find the item go to the next
+void adiciona(t_list *t, process *p){
+	t_item aux;
+	aux.d = p;
 
-	if(t == l->L) return NULL;
-
-	return t;
-
+	t->L[t->qnt++] = aux;// adiciona um item no final da fila
 }
-*/
-/*void show_itens(t_list *l){
-	
-		Function recive a list and display all the item save
-		In:
-			l-> list to be displayed
-	
-	t_item *t = l->L->next;
-	while(t != l->L){//while didn't go to the start of the list
-		printf("%d\n", t->data.d);
-		t = t->next;
-	}
-}*/
+void adiciona_qualquer_lugar(t_list *t, int pos, process *item){
 
- void add_sort(t_list *l, process *item){
-	
-	//	Function recive a value to be add and a the list to add the value and add the value in ascending order
-	
-	t_item *t = malloc(sizeof(t_item));
+	t_item aux;
+	aux.d = item; //novo item
 
-	t->data.d = item;
+	for(int i = t->qnt+1; i > pos; i--)	t->L[i] = t->L[i-1];		
 
-	t_item *aux = l->L->next;
-
-	if(l->qnt == 0){//if 0 both are the same item
-		l->L->first = t;
-		l->L->last = t;
-	}else if(l->L->first->data.d->p0 > item->p0){//if the pointer that is in first is bigger that the item change
-		l->L->first = t;
-	}else if(item->p0 > l->L->last->data.d->p0){//if the pointer that is in first is smaller that the item change
-		l->L->last = t;
-	}
-
-	while(aux != l->L && aux->data.d->p0 >= item->p0) aux = aux->next;//find the first item that has a value higher value to the item to be  add
-
-	aux->prev->next = t;//the prev item to the item found points to the new item
-	t->prev = aux->prev; //the prev pointer of the new item points to the prev item
-	t->next = aux; //the new item points to the item found in next pointer
-	aux->prev = t;// the prev pointeir in the item founded points to the new item 
-	l->qnt--;
-
+	t->qnt++;
+	t->L[pos] = aux;
 }
-
 
 process *retira_qualquer_item(t_list *t, int pos){
 
-	t_item *aux = t->L->next;
-	int qnt = 0; 
-	if(pos > t->qnt){
-		while(qnt < pos-1){
-			aux= aux->next;
+	t_item ret = t->L[pos];//salva o item que vai retirar
+
+	for (int i = pos; i < t->qnt; ++i){//shifita toda a lista para esquerda
+		t->L[i] = t->L[i+1];
+	}
+	t->qnt--;
+
+	return ret.d;
+}
+
+
+result *recebe_processos_f(infos *dados){
+
+	int quantum, qnt_f, item_anal, salva_prioridade, auxI, controle;
+	t_list processos;
+	result *final = malloc(sizeof(result)*dados->qnt);
+	process *aux;
+	/*
+	*	quantum -> variavel para contar o tempo
+	*	qnt_f -> controlar quantidade de itens na fila
+	*	final -> para salvar os processos que acabaram
+	*	aux -> utilizar para salvar um processos temporariamente
+	*	auxI -> variavel para saber quando estou em uma prioridade e entrou uma maior e tenho que acabar os processos de prioridade menor antes
+	* 	controle -> para saber se tem q voltar para a prioridade mais alta, ativada quando auxI e ativada
+	*/
+	create_list(&processos);
+	controle = 0;
+	qnt_f = 0; quantum = 0; item_anal = 0; salva_prioridade = 0;
+	do{//executa em quanto tiver item na lista
+		quantum++;
+		auxI =  adiciona_processos_lista(&processos, dados, salva_prioridade ,quantum, &item_anal);
+		
+		if(controle == 1){//se tiver que voltar para a prioridade mais alta
+			item_anal = 0;
+			controle = 0;
 		}
 
-		aux->prev->next = aux->next;
-		aux->next->prev = aux->prev;
+		if (auxI == 1){//para executar ultimo processo de prioridade mais baixa antes de voltar apra a mais alta
+			item_anal++;
+			controle = 1;
+		} 
+		
+		aux = processos.L[item_anal].d;
+		aux->tf0--;
+		if(aux->tf0 > 0){//se o processo tiver q executa ainda adiciona no final da lista
+			//se o processo tiver prioridde 0, volta ele para o comeco da lista
+			if(aux->r0 == 0){
+				//não mudo meu item_analizado
+			}else{
+				item_anal++;	
+			} 
+		}else if(aux->tf0 == 0){// se nao adiciona na lista de processos acabados
+			aux = retira_qualquer_item(&processos, item_anal);
+			salva_prioridade = aux->r0;
+			adiciona_resultando(&final[qnt_f++], aux, quantum);
+		}
+		if(item_anal == processos.qnt) item_anal = 0;//se chego no ultimo item volta para o comeco
 
-		return aux->data.d;
+	}while(processos.qnt > 0);
+
+	return final;
+}
+
+int adiciona_processos_lista(t_list *processos, infos *dados, int ultimo, int time, int *atual){
+	int retorna = 0, acho_0= 0;
+	for(int i = 0; i < dados->qnt; i++){//olh sobre todos os processos
+		if(dados->p[i]->t00 == time){
+			//se achar um processo de prioridade 0 coloca no começo da lista
+			if(dados->p[i]->r0 == 0){
+				adiciona_qualquer_lugar(processos, 0, dados->p[i]);
+				acho_0 = 1;
+			}else{
+				if(processos->qnt > 2 && (processos->L[*atual].d->r0 != 0) ){//se eu entrar um item de alta prioridade mas~ainda tiver item na prioridade que estou e o item que esta para executar nao pode ter prioridade 0
+					if(dados->p[i]->r0 > processos->L[*atual].d->r0){//se novo processo e de prioridade do proximo executar
+						if((processos->L[*atual].d->r0 != processos->L[*atual +1].d->r0)){//se o proximo processo não for na mesma prioridade volto para a mior prioridade
+							
+							if(processos->L[*atual].d->r0 == ultimo) retorna = 1;
+							else *atual = 0;
+						}
+					}			
+					
+				}
+				adiciona(processos, dados->p[i]);//adiciona um processo 
+
+				ordena(processos);//ordena a lista toda
+			}
+		}
 	}
-	return NULL;
+	if(retorna == 1 && acho_0 != 1){
+		return 1;
+	} 
+	return 0;
+	
+}
+
+void ordena(t_list *processos){
+	t_item aux;
+	//utiliza um bubble sort para ordena a lista
+	for (int i = 0; i < processos->qnt-1; ++i){
+		for (int j = i; j < processos->qnt; ++j){
+			if(processos->L[i].d->r0 != 0){
+				if(processos->L[i].d->r0 < processos->L[j].d->r0){
+					// faz a troca dos itens
+					aux = processos->L[i];
+					processos->L[i] = processos->L[j];
+					processos->L[j] = aux;
+				}else if(processos->L[i].d->r0 == processos->L[j].d->r0){
+					if(processos->L[i].d->p0 > processos->L[j].d->p0){
+						// faz a troca dos itens
+						aux = processos->L[i];
+						processos->L[i] = processos->L[j];
+						processos->L[j] = aux;
+					}
+				}				
+			}
+		}
+	}
 }
