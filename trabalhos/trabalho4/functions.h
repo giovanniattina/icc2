@@ -69,4 +69,10 @@ void adiciona_resultando(result *r, process *p, int time);
  */
 void print_final(result *f, int qnt);
 
+/*
+ * 	Funcao recebe os dados de entrada e libera a memoria que usou para salva-los
+ *	@parametros dados de entrada
+*/
+void libera_dados(infos *dados);
+
 #endif

@@ -65,3 +65,13 @@ void adiciona_resultando(result *r, process *p, int time){
 	r->process = p->p0;
 	r->time = time;
 }
+
+
+void libera_dados(infos *dados){
+
+	for(int i = 0; i < dados->qnt; i++){
+		free(dados->p[i]);
+	}
+	free(dados->p);
+	free(dados);
+}

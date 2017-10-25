@@ -95,5 +95,7 @@ void adiciona_processo_fila(infos *processos, queue *q, int quantum){
 	for (int i = 0; i < auxC; ++i){
 		add_item_q(q, aux[i]);
 	}
+	
+	free(aux);
 }
 

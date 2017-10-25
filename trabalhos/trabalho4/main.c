@@ -49,5 +49,10 @@ int main(){
 		f = recebe_processos(dados);
 	}
 	print_final(f, dados->qnt);
+
+	//libera memoria dinamica
+	libera_dados(dados);
+	free(f);
+
 	return 0;
 }

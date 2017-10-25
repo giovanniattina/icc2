@@ -94,7 +94,6 @@ result *recebe_processos_f(infos *dados){
 		if(item_anal == processos.qnt) item_anal = 0;//se chego no ultimo item volta para o comeco
 
 	}while(processos.qnt > 0);
-
 	return final;
 }
 
