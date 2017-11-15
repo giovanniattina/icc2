@@ -1,0 +1,85 @@
+===TERMINAL 1===
+Banco 1: Moeda +220.00 -230.00 Transferencia +0.00 -0.00
+Banco 33: Moeda +0.00 -100.00 Transferencia +0.00 -0.00
+Banco 237: Moeda +200.00 -0.00 Transferencia +0.00 -0.00
+Banco 341: Moeda +0.00 -60.00 Transferencia +0.00 -0.00
+Lucro obtido: 33.00
+Erros de saque: 1
+Total de erros: 1
+===TERMINAL 2===
+Banco 1: Moeda +0.00 -50.00 Transferencia +372.97 -0.00
+Banco 33: Moeda +0.00 -70.00 Transferencia +0.00 -372.97
+Banco 237: Moeda +0.00 -50.00 Transferencia +0.00 -0.00
+Banco 341: Moeda +0.00 -50.00 Transferencia +0.00 -0.00
+Lucro obtido: 18.00
+Erros de consulta: 1
+Total de erros: 1
+===TERMINAL 3===
+Banco 1: Moeda +0.00 -570.00 Transferencia +0.00 -0.00
+Banco 33: Moeda +0.00 -100.00 Transferencia +375.00 -0.00
+Banco 341: Moeda +400.00 -0.00 Transferencia +0.00 -375.00
+Lucro obtido: 30.00
+Erros de deposito: 1
+Erros de transferencia: 1
+Total de erros: 2
+===TERMINAL 4===
+Banco 1: Moeda +0.00 -100.00 Transferencia +0.00 -0.00
+Banco 33: Moeda +0.00 -70.00 Transferencia +0.00 -0.00
+Banco 237: Moeda +0.00 -130.00 Transferencia +0.00 -0.00
+Banco 341: Moeda +0.00 -50.00 Transferencia +0.00 -0.00
+Lucro obtido: 18.00
+===TOTAL===
+Banco 1: Moeda +220.00 -950.00 Transferencia +372.97 -0.00
+Banco 33: Moeda +0.00 -340.00 Transferencia +375.00 -372.97
+Banco 237: Moeda +200.00 -180.00 Transferencia +0.00 -0.00
+Banco 341: Moeda +400.00 -160.00 Transferencia +0.00 -375.00
+Lucro obtido: 99.00
+Erros de saque: 1
+Erros de deposito: 1
+Erros de consulta: 1
+Erros de transferencia: 1
+Total de erros: 4
+===AUDITORIA===
+===SAQUE TERMINAL 1===
+Mostrando primeiros 4 resultados
+1- Banco 33 100.00
+2- Banco 1 80.00
+3- Banco 341 60.00
+4- Banco 1 100.00
+===SAQUE TERMINAL 2===
+Mostrando primeiros 4 resultados
+1- Banco 33 70.00
+2- Banco 341 50.00
+3- Banco 1 50.00
+4- Banco 237 50.00
+===SAQUE TERMINAL 3===
+Mostrando primeiros 4 resultados
+1- Banco 1 100.00
+2- Banco 1 70.00
+3- Banco 1 30.00
+4- Banco 1 70.00
+===SAQUE TERMINAL 1===
+Mostrando primeiros 4 resultados
+1- Banco 33 50.00
+2- Banco 1 80.00
+3- Banco 341 60.00
+4- Banco 1 100.00
+===TRANSFERENCIA TERMINAL 2===
+Mostrando primeiros 1 resultados
+1- Banco origem 33 Banco destino 1 372.97
+===TRANSFERENCIA TERMINAL 3===
+Mostrando primeiros 1 resultados
+1- Banco origem 341 Banco destino 33 375.00
+===DEPOSITO TERMINAL 1===
+Mostrando primeiros 2 resultados
+1- Banco 1 80.00
+2- Banco 237 200.00
+===DEPOSITO TERMINAL 2===
+Mostrando primeiros 2 resultados
+Sem resultados
+===DEPOSITO TERMINAL 3===
+Mostrando primeiros 2 resultados
+1- Banco 341 400.00
+===DEPOSITO TERMINAL 4===
+Mostrando primeiros 2 resultados
+Sem resultados

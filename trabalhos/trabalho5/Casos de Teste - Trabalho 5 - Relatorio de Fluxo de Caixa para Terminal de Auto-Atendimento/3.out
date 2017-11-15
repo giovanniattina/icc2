@@ -1,0 +1,30 @@
+===TERMINAL 1===
+Banco 1: Moeda +0.00 -200.00 Transferencia +0.00 -0.00
+Banco 33: Moeda +0.00 -110.00 Transferencia +0.00 -0.00
+Banco 341: Moeda +0.00 -30.00 Transferencia +0.00 -0.00
+Lucro obtido: 27.00
+Erros de saque: 2
+Total de erros: 2
+===TERMINAL 2===
+Banco 1: Moeda +0.00 -50.00 Transferencia +0.00 -0.00
+Banco 33: Moeda +0.00 -80.00 Transferencia +0.00 -0.00
+Banco 341: Moeda +0.00 -105.00 Transferencia +0.00 -0.00
+Lucro obtido: 15.00
+===TERMINAL 3===
+Banco 1: Moeda +0.00 -150.00 Transferencia +0.00 -0.00
+Banco 237: Moeda +0.00 -0.00 Transferencia +0.00 -0.00
+Lucro obtido: 12.00
+Erros de transferencia: 1
+Total de erros: 1
+===TERMINAL 4===
+Banco 1: Moeda +0.00 -125.00 Transferencia +0.00 -0.00
+Lucro obtido: 9.00
+===TOTAL===
+Banco 1: Moeda +0.00 -525.00 Transferencia +0.00 -0.00
+Banco 33: Moeda +0.00 -190.00 Transferencia +0.00 -0.00
+Banco 237: Moeda +0.00 -0.00 Transferencia +0.00 -0.00
+Banco 341: Moeda +0.00 -135.00 Transferencia +0.00 -0.00
+Lucro obtido: 63.00
+Erros de saque: 2
+Erros de transferencia: 1
+Total de erros: 3
