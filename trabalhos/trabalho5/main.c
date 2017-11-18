@@ -7,29 +7,41 @@
  *	@parametros ponteiro do char para salvar a string
  */
 #define recebe_linha(linha) {\
-	fgets(linha, 1001, stdin);\
+	fgets(linha, TAMANHO, stdin);\
 	if(linha[strlen(linha) -1] == '\n') linha[strlen(linha) -1] = '\0';\
 	}
 int main(){
 
   char *entrada, **entradas;
 	itens **dados;
-  int qnt;
+	terminal **t;
+	erros *e;
+  int qnt, valor_auditoria;
 
+	e = (erros*)calloc(1, sizeof(erros));
+	valor_auditoria = 0;
   entrada = (char*)malloc(sizeof(char)*TAMANHO);
   qnt = 1;
-  entradas = (char**)malloc(sizeof(char*)*qnt);
+  entradas = (char**)malloc(sizeof(char*)*100);
   do{
     recebe_linha(entrada);
     entradas[qnt-1] = strdup(entrada);
-		printf("entrada :%s\n", entradas[qnt-1]);
-
+		printf("entra %s\n", entrada);
 		qnt++;
 
-    entradas = (char**)realloc(entradas, sizeof(char*)*qnt);
 	}while(!feof(stdin));
 
-	dados = separa_itens(entradas, qnt-1);
+	dados = separa_itens(entradas, qnt-1, e);
+	t = processa_entrada(dados, qnt-1, &valor_auditoria);
+	relatorio(t, e);
+	if(valor_auditoria !=0) imprime_auditoria(valor_auditoria, qnt, dados, t);
+	//libera memoria
+	libera_entrada(qnt-1, entradas);
+	libera_itens(qnt-1, dados);
 
+	libera_terminal(t);
+	free(e);
+	free(entrada);
+	exit(0);
   return 0;
 }

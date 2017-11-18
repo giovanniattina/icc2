@@ -5,4 +5,4 @@ run:
 
 val:
 	gcc *.c -Wall -g
-	valgrind -v ./a.out 
+	valgrind -v --track-origins=yes  --leak-check=full --show-leak-kinds=all ./a.out 
