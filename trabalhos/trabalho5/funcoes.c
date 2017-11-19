@@ -1,7 +1,7 @@
 #include "funcoes.h"
 
-
-const int tamanho_banco_terminal[4] = {13,31,83,23};
+//numeros primos utilizados para a funcao hash para salvar os itens de cada banco
+const int tamanho_banco_terminal[MAX_TERMINAL] = {13,31,83,23};
 
 itens **separa_itens(char **entradas, int quantidade, erros *e){
 
@@ -69,9 +69,9 @@ terminal **processa_entrada(itens **entradas, int qnt, int *auditoria){
   //aloca espaço para salvar os dados no terminal
   terminal **t;
 
-  t = (terminal**)malloc(sizeof(terminal*)*4);
+  t = (terminal**)malloc(sizeof(terminal*)*MAX_TERMINAL);
 
-  for(int i = 0; i<4; i++){
+  for(int i = 0; i<MAX_TERMINAL; i++){
 
     t[i] = (terminal*)calloc(1, sizeof(terminal));
     t[i]->operacoes = (itens**)calloc(10, sizeof(itens*));
@@ -182,28 +182,6 @@ int salva_nova_operacao_banco(itens *operacao, banco *b){
 }
 
 
-int analiza_dado(itens *dado){
-
-  //ve qual operacao é
-  if(strcmp(dado->o, "S") == 0){//se for saque/consulta de saques
-    //ve se tem: terminal, banco e valor / terminal numero de operacoes
-    if((dado->item1 != 0 && dado->item2 != 0) || dado->item3 !=0) return 0;
-
-  }else if(strcmp(dado->o, "D") == 0){// de for deposito ou consulta de saques
-    //ve se tem: terminal, banco e valor / terminal numero de operacoes
-    if((dado->item1 != 0 && dado->item2 != 0) || dado->item3 !=0) return 0;
-
-  }else if(strcmp(dado->o, "C") == 0){//ße for consulta
-    //ve se tem: terminal, banco e  / terminal numero de operacoes
-    if((dado->item1 != 0 && dado->item2 != 0) || dado->item3 !=0) return 0;
-
-  }else if(strcmp(dado->o, "T") == 0){//se for transferencia em bancos ou propio banco
-    //ve se tem: terminal, banco ou proximo banco e valor  / terminal numero de operacoes
-    if((dado->item1 != 0 && dado->item2 != 0 && dado->item3 !=0) || dado->item4 != 0) return 0;
-  }
-  return 1;
-}
-
 int hash(int terminal, int banco){
   return banco%tamanho_banco_terminal[terminal-1];
 }
@@ -237,7 +215,7 @@ void relatorio(terminal **t, erros *e){
   final = (banco_final*)calloc(1 ,sizeof(banco_final));
   final->i_bancos = (banco*)malloc(15*sizeof(banco));
 
-  for (int i = 0; i < 4; i++) {
+  for (int i = 0; i < MAX_TERMINAL; i++) {
     printf("===TERMINAL %d===\n", i+1);
     //passo por cada banco do terminal i
     ordena(t[i]->id_bancos, t[i]->qnt_bancos);
@@ -255,6 +233,7 @@ void relatorio(terminal **t, erros *e){
   }
   //imprime final
   printf("===TOTAL===\n");
+  ordena_final(final);
   for (int i = 0; i < final->qnt; i++) {
     printf("Banco %d Moeda +%.2f -%.2f Transferencia +%.2f -%.2f\n",  final->i_bancos[i].id ,final->i_bancos[i].deposito, final->i_bancos[i].saque, final->i_bancos[i].transferencia_entrou, final->i_bancos[i].transferencia_saiu );
 
@@ -304,6 +283,18 @@ void salva_final(banco_final *bf, banco *salvar){
   bf->qnt++;
 
 }
+void ordena_final(banco_final *bf){
+  banco aux;
+  for(int i = 0; i < bf->qnt -1; i++){
+    for(int j = i ; j < bf->qnt; j++){
+      if(bf->i_bancos[i].id > bf->i_bancos[j].id){
+        aux = bf->i_bancos[i];
+        bf->i_bancos[i] = bf->i_bancos[j];
+        bf->i_bancos[j] = aux;
+      }
+    }
+  }
+}
 
 void transferencia_bancos(itens *operacao, banco *recebe){
   recebe->transferencia_entrou += operacao->item4;
@@ -313,8 +304,6 @@ void transferencia_bancos(itens *operacao, banco *recebe){
 void imprime_auditoria(int apartir_de, int total, itens **entradas, terminal **terminais){
   printf("===AUDITORIA===\n");
   int j, k;
-
-
 
   for(int i = apartir_de; i < total-1; i++){
     //vejo quantas vezes vou ter que repedi a operacao no valor q esta no item2
@@ -385,7 +374,7 @@ void libera_itens(int qnt, itens **item){
 }
 
 void libera_terminal(terminal **t){
-  for(int i =0; i < 4; i++){
+  for(int i =0; i < MAX_TERMINAL; i++){
 
     for(int j =0; j < tamanho_banco_terminal[i]; j++){
       free(t[i]->bancos[j]);

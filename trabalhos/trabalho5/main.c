@@ -11,8 +11,16 @@
 	if(linha[strlen(linha) -1] == '\n') linha[strlen(linha) -1] = '\0';\
 	}
 int main(){
+	/**
+	 * entrada -> recebe cada linha de entradas
+	 * entradas -> salva todas as linhas de entrada
+	 * t-> salva as informacoes do terminal
+	 * e -> salva os tipos e as quantdade de erros de entradas
+	 * qnt -> quantidade de operacoes entradas
+	 * valor_auditoria -> onde comeca a ter operacoes da auditoria
+	 */
 
-  char *entrada, **entradas;
+	char *entrada, **entradas;
 	itens **dados;
 	terminal **t;
 	erros *e;
@@ -26,8 +34,7 @@ int main(){
   do{
     recebe_linha(entrada);
     entradas[qnt-1] = strdup(entrada);
-		printf("entra %s\n", entrada);
-		qnt++;
+			qnt++;
 
 	}while(!feof(stdin));
 
