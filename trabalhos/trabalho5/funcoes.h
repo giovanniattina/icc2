@@ -49,6 +49,7 @@ typedef struct{
     int qnt_operacoes;
     banco **bancos;
     int qnt_bancos, *id_bancos;
+		erros e;
 }terminal;
 /**
  * [salva todos os bancos usados em todos os terminais]

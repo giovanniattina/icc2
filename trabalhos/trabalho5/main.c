@@ -2,14 +2,7 @@
 #include "funcoes.h"
 
 #define TAMANHO 1001
-/*
- *	Recebe um ponteiro de char e pega o que esta no stdin e salva nele, tirando o \n do final
- *	@parametros ponteiro do char para salvar a string
- */
-#define recebe_linha(linha) {\
-	fgets(linha, TAMANHO, stdin);\
-	if(linha[strlen(linha) -1] == '\n') linha[strlen(linha) -1] = '\0';\
-	}
+
 int main(){
 	/**
 	 * entrada -> recebe cada linha de entradas
@@ -29,8 +22,9 @@ int main(){
 	e = (erros*)calloc(1, sizeof(erros));
 	valor_auditoria = 0;
   entrada = (char*)malloc(sizeof(char)*TAMANHO);
-  qnt = 1;
   entradas = (char**)malloc(sizeof(char*)*100);
+
+	qnt = 1;
   do{
     recebe_linha(entrada);
     entradas[qnt-1] = strdup(entrada);
@@ -42,6 +36,7 @@ int main(){
 	t = processa_entrada(dados, qnt-1, &valor_auditoria);
 	relatorio(t, e);
 	if(valor_auditoria !=0) imprime_auditoria(valor_auditoria, qnt, dados, t);
+
 	//libera memoria
 	libera_entrada(qnt-1, entradas);
 	libera_itens(qnt-1, dados);
@@ -50,5 +45,6 @@ int main(){
 	free(e);
 	free(entrada);
 	exit(0);
-  return 0;
+
+	return 0;
 }
