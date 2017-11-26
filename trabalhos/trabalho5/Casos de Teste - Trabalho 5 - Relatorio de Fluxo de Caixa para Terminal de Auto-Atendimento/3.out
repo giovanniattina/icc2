@@ -12,7 +12,6 @@ Banco 341: Moeda +0.00 -105.00 Transferencia +0.00 -0.00
 Lucro obtido: 15.00
 ===TERMINAL 3===
 Banco 1: Moeda +0.00 -150.00 Transferencia +0.00 -0.00
-Banco 237: Moeda +0.00 -0.00 Transferencia +0.00 -0.00
 Lucro obtido: 12.00
 Erros de transferencia: 1
 Total de erros: 1
@@ -22,7 +21,6 @@ Lucro obtido: 9.00
 ===TOTAL===
 Banco 1: Moeda +0.00 -525.00 Transferencia +0.00 -0.00
 Banco 33: Moeda +0.00 -190.00 Transferencia +0.00 -0.00
-Banco 237: Moeda +0.00 -0.00 Transferencia +0.00 -0.00
 Banco 341: Moeda +0.00 -135.00 Transferencia +0.00 -0.00
 Lucro obtido: 63.00
 Erros de saque: 2

@@ -1,6 +1,6 @@
 ===TERMINAL 1===
-Banco 1: Moeda +220.00 -230.00 Transferencia +0.00 -0.00
-Banco 33: Moeda +0.00 -100.00 Transferencia +0.00 -0.00
+Banco 1: Moeda +220.00 -280.00 Transferencia +0.00 -0.00
+Banco 33: Moeda +0.00 -50.00 Transferencia +0.00 -0.00
 Banco 237: Moeda +200.00 -0.00 Transferencia +0.00 -0.00
 Banco 341: Moeda +0.00 -60.00 Transferencia +0.00 -0.00
 Lucro obtido: 33.00
@@ -29,8 +29,8 @@ Banco 237: Moeda +0.00 -130.00 Transferencia +0.00 -0.00
 Banco 341: Moeda +0.00 -50.00 Transferencia +0.00 -0.00
 Lucro obtido: 18.00
 ===TOTAL===
-Banco 1: Moeda +220.00 -950.00 Transferencia +372.97 -0.00
-Banco 33: Moeda +0.00 -340.00 Transferencia +375.00 -372.97
+Banco 1: Moeda +220.00 -1000.00 Transferencia +372.97 -0.00
+Banco 33: Moeda +0.00 -290.00 Transferencia +375.00 -372.97
 Banco 237: Moeda +200.00 -180.00 Transferencia +0.00 -0.00
 Banco 341: Moeda +400.00 -160.00 Transferencia +0.00 -375.00
 Lucro obtido: 99.00
