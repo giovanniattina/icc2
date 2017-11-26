@@ -34,6 +34,12 @@ typedef struct{
     float saque, deposito, transferencia_entrou, transferencia_saiu;
 }banco;
 
+//estrutua para contabilizar as operacoes que tiver erro na simulacao
+typedef struct{
+  int saque, transferencia, deposito, consulta, erro;
+}erros;
+
+
 /**
  * [estrutura para salvar as informacoes de cada terminal individualmente]
  * lucro [salvo o luro daquele terminal]
@@ -42,6 +48,7 @@ typedef struct{
  * bancos [salva as informacoes de cada banco, sendo que da um tem quatidade de dinheiro transitado por ele]
  * qnt_bancos [ quantidade de bancos acessados por o terminal]
  * id_bancos [numero dos bancos que foi acessado no terminal]
+ * e [salva erros ocorridos no terminal]
  */
 typedef struct{
     float lucro;
@@ -49,6 +56,7 @@ typedef struct{
     int qnt_operacoes;
     banco **bancos;
     int qnt_bancos, *id_bancos;
+		erros *e;
 }terminal;
 /**
  * [salva todos os bancos usados em todos os terminais]
@@ -60,19 +68,14 @@ typedef struct{
   int qnt;
 }banco_final;
 
-//estrutua para contabilizar as operacoes que tiver erro na simulacao
-typedef struct{
-  int saque, transferencia, deposito, consulta, erro;
-}erros;
 
 /**
  * [separa_itens pega as informacoes de entrada que esta em uma string e passa corretamenta para os bancos da struct item]
  * @param  entradas   [matriz com os dados de entrada]
  * @param  quantidade [quanidade de itens de entrada]
- * @param erros [salva as operacoes que tiverem erro]
  * @return            [retorna um matriz como todos os dados separados]
  */
-itens **separa_itens(char **entradas, int quantidade, erros *e);
+itens **separa_itens(char **entradas, int quantidade);
 
 /**
  * [processa_entrada realiza cada operacao entrada pelos terminais]
@@ -125,9 +128,8 @@ int salva_nova_operacao_banco(itens *operacao, banco *b);
 /**
  * [relatorio mostra ao usuario um relatorio com as quatidade de dinheiro movimentada de cada terminal durante o dia e os erros acontecidos]
  * @param t [informacoes das operacoes acontecidas em cada terminal]
- * @param e [informacoes com as operacoes que aconteceram erro]
  */
-void relatorio(terminal **t, erros *e);
+void relatorio(terminal **t);
 
 /**
  * [mostra_info_banco recebe as informacoes realizada em um banco em um determinando terminal e mostra no STDOUT]
@@ -196,4 +198,18 @@ void libera_final(banco_final *f);
  * @param t [onde as informacoes do terminal esta salva]
  */
 void libera_terminal(terminal **t);
+
+/**
+ * [salva_erro_final salva a quantidade de erro final]
+ * @param e_f [erro total]
+ * @param t   [erro vindo do terminal x]
+ */
+void salva_erro_final(erros *e_f, erros *t);
+
+/**
+ * [printa_erro rcebe um ponteiro para um estrutura de erro e imprime o resultado final]
+ * @param e [erros para imprir]
+ */
+void printa_erro(erros *e);
+
 #endif

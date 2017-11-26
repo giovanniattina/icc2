@@ -23,10 +23,8 @@ int main(){
 	char *entrada, **entradas;
 	itens **dados;
 	terminal **t;
-	erros *e;
   int qnt, valor_auditoria;
 
-	e = (erros*)calloc(1, sizeof(erros));
 	valor_auditoria = 0;
   entrada = (char*)malloc(sizeof(char)*TAMANHO);
   qnt = 1;
@@ -38,16 +36,14 @@ int main(){
 
 	}while(!feof(stdin));
 
-	dados = separa_itens(entradas, qnt-1, e);
+	dados = separa_itens(entradas, qnt-1);
 	t = processa_entrada(dados, qnt-1, &valor_auditoria);
-	relatorio(t, e);
+	relatorio(t);
 	if(valor_auditoria !=0) imprime_auditoria(valor_auditoria, qnt, dados, t);
 	//libera memoria
 	libera_entrada(qnt-1, entradas);
 	libera_itens(qnt-1, dados);
-
 	libera_terminal(t);
-	free(e);
 	free(entrada);
 	exit(0);
   return 0;
